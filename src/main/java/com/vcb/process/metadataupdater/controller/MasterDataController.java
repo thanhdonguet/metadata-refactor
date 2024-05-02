@@ -30,4 +30,10 @@ public class MasterDataController {
         log.debug("REST request to get all mark error Logging");
         return loggingService.findByMarkError("Y");
     }
+
+    @GetMapping("/all-log")
+    public List<LoggingDTO> findAll() {
+        log.debug("REST request to get all Logging");
+        return loggingService.findAll();
+    }
 }
