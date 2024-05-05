@@ -8,5 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PropertyDefRepository extends JpaRepository<PropertyDef, Long> {
+public interface PropertyDefRepository extends JpaRepository<PropertyDef, Integer> {
+    List<PropertyDef> findByIdIn(List<Integer> ids);
 }

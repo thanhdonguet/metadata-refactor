@@ -50,17 +50,26 @@ public class PropertyDefServiceImpl implements PropertyDefService {
     @Transactional(readOnly = true)
     public List<PropertyDefDTO> findAll() {
         log.debug("Request to get all PropertyDef");
-        return propertyDefRepository.findAll().stream().map(propertyDefMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
-
+        return propertyDefRepository.findAll().stream()
+                .map(propertyDefMapper::toDto)
+                .toList();
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         log.debug("Request to delete PropertyDef : {}", id);
         propertyDefRepository.deleteById(id);
     }
+
     @Override
-    public PropertyDefDTO findById(Long id){
-        return propertyDefRepository.findById(id).map(propertyDefMapper::toDto).orElse(null);
+    public PropertyDefDTO findById(Integer id){
+        return propertyDefRepository.findById(id)
+                .map(propertyDefMapper::toDto)
+                .orElse(null);
+    }
+
+    @Override
+    public List<PropertyDefDTO> findByIdIn(List<Integer> ids){
+        return propertyDefRepository.findByIdIn(ids).stream().map(propertyDefMapper::toDto).collect(Collectors.toList());
     }
 }

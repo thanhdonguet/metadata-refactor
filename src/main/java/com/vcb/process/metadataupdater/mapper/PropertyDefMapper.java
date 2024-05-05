@@ -10,6 +10,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PropertyDefMapper extends EntityMapper<PropertyDefDTO, PropertyDef> {
 
-//    PropertyDefDTO toDto(PropertyDef entity);
-//    PropertyDef toEntity(PropertyDefDTO dto);
+    PropertyDefDTO toDto(PropertyDef entity);
+    PropertyDef toEntity(PropertyDefDTO dto);
 }

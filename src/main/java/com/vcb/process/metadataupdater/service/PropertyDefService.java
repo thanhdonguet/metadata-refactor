@@ -38,7 +38,9 @@ public interface PropertyDefService {
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(Integer id);
 
-    PropertyDefDTO findById(Long id);
+    PropertyDefDTO findById(Integer id);
+
+    List<PropertyDefDTO> findByIdIn (List<Integer> ids);
 }

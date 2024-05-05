@@ -37,7 +37,7 @@ public class MasterDataController {
     }
 
     @GetMapping("/find/{id}")
-    public PropertyDefDTO findById(@PathVariable Long id) {
+    public PropertyDefDTO findById(@PathVariable Integer id) {
         log.debug("REST request to propertyDef name by id");
         return propertyDefService.findById(id);
     }

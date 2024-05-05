@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class PropertyDefDTO {
-    private Long id;
+    private Integer id;
     private String name;
+    private String metaData;
+    private String metaDataDetail;
+
 }
