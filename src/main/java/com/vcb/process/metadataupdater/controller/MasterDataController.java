@@ -1,10 +1,12 @@
 package com.vcb.process.metadataupdater.controller;
 
 import com.vcb.process.metadataupdater.dto.LoggingDTO;
+import com.vcb.process.metadataupdater.dto.PropertyDefDTO;
 import com.vcb.process.metadataupdater.service.LoggingService;
+import com.vcb.process.metadataupdater.service.PropertyDefService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,16 +17,13 @@ import java.util.List;
 @Slf4j
 public class MasterDataController {
     private final LoggingService loggingService;
+    private final PropertyDefService propertyDefService;
 
-    public MasterDataController(LoggingService loggingService) {
+    public MasterDataController(LoggingService loggingService, PropertyDefService propertyDefService) {
         this.loggingService = loggingService;
+        this.propertyDefService = propertyDefService;
     }
 
-    /**
-     * {@code GET  /logging} : get all the logging.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of logging in body.
-     */
     @GetMapping("/error-log")
     public List<LoggingDTO> findByMarkError() {
         log.debug("REST request to get all mark error Logging");
@@ -35,5 +34,17 @@ public class MasterDataController {
     public List<LoggingDTO> findAll() {
         log.debug("REST request to get all Logging");
         return loggingService.findAll();
+    }
+
+    @GetMapping("/find/{id}")
+    public PropertyDefDTO findById(@PathVariable Integer id) {
+        log.debug("REST request to propertyDef name by id");
+        return propertyDefService.findById(id);
+    }
+
+    @GetMapping("/all-propertydef")
+    public List<PropertyDefDTO> findAllPropertyDef() {
+        log.debug("REST request to get all propertyDef");
+        return propertyDefService.findAll();
     }
 }
