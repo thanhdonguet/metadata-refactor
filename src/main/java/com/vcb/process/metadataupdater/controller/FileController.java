@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -37,6 +40,16 @@ public class FileController {
         } catch (IOException e) {
             log.error("Error while read log file: ", e);
             throw e;
+        }
+    }
+
+    @GetMapping("/read-docid")
+    public Set<String> getDocIds(@RequestParam("file") MultipartFile logFile) {
+        try {
+            return logFileReaderService.extractDocIds(logFile);
+        } catch (IOException e) {
+            log.error("Error while read log file: ", e);
+            return Collections.emptySet();
         }
     }
 }
