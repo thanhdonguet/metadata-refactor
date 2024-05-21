@@ -1,4 +1,5 @@
 spring.application.name: metadata-refactor
+vcb.batch.input.location: D:\log-file\
 server:
   port: 8081
 spring:
@@ -7,7 +8,7 @@ spring:
     username: system
     password: 123456789
     driver-class-name: oracle.jdbc.OracleDriver
-  servlet:
+  servlet:  
     multipart:
       max-file-size: 200MB
       max-request-size: 200MB
@@ -17,3 +18,6 @@ spring:
         default_schema: SYSTEM
         format_sql: true
     show-sql: true
+  batch:
+    jdbc:
+      initialize-schema: always
